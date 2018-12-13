@@ -1,8 +1,11 @@
+using System;
+
 namespace carfel_checkpoint_tarde.Models
 {
     /// <summary>
     /// Classe responsável pelo model dos depoimentos
     /// </summary>
+    [Serializable]
     public class DepoimentoModel : BaseModel
     {
         /// <summary>

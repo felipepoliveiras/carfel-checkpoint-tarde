@@ -44,7 +44,7 @@ namespace Senai.Carfel.Checkpoint
                 rotas =>
                     rotas.MapRoute(
                         name: "defaults",
-                        template: "{controller}/{action}"
+                        template: "{controller=Pages}/{action=Index}"
                     )
             );
         }

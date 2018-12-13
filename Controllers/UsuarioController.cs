@@ -58,7 +58,8 @@ namespace carfel_checkpoint_tarde.Controllers
                 //Caso o usuario seja encontrado,
                 //Aplica-o na sessão e redireciona para home
                 HttpContext.Session.SetString("idUsuario", usuarioBuscado.ID.ToString());
-                HttpContext.Session.SetString("emailUsuario", usuarioBuscado.Nome);
+                HttpContext.Session.SetString("emailUsuario", usuarioBuscado.Email);
+                HttpContext.Session.SetString("nomeUsuario", usuarioBuscado.Nome);
                 if (usuarioBuscado.Administrador)
                 {
                     HttpContext.Session.SetString("tipoUsuario", "Administrador");
@@ -67,14 +68,25 @@ namespace carfel_checkpoint_tarde.Controllers
                 else
                 {
                     HttpContext.Session.SetString("tipoUsuario", "Comum");
-                    return RedirectToAction("Depoimentos", "Pages");
+                    return RedirectToAction("Index", "Depoimento");
                 }
             }
             else
             {
+                ViewBag.Mensagem = "<div class='alert alert-danger'>Usuário Inválido</div>";
                 //Reabre a tela de login
                 return View();
             }
+         }
+
+        
+         [HttpGet]
+         //Remove o usuário da sessão
+         public IActionResult Sair(){
+             //Remove os dados da sessão
+             HttpContext.Session.Clear();
+
+             return RedirectToAction("Index", "Pages");
          }
     }
 }

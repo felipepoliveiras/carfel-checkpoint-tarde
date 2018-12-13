@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Http;
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -15,10 +17,13 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/depoimentos.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+
+    @RenderSection("styles", required: false)
+    
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <h4><a href="/Index">Carfel</a></h4>
+      <h4><a href="/">Carfel</a></h4>
       <button
         class="navbar-toggler"
         type="button"
@@ -33,7 +38,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/Index"
+            <a class="nav-link" href="/"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
@@ -51,8 +56,17 @@
           </li>
         </ul>
         <span class="navbar-text">
-          <a href="/Usuario/Login">Login</a> |
-          <a href="/Usuario/Cadastrar">Cadastrar</a>
+          @if(Context.Session.GetString("nomeUsuario") == null)
+          {
+            <a href="/Usuario/Login">Login</a> 
+            <a href="/Usuario/Cadastrar">Cadastrar</a>
+          } 
+          else
+          {
+            @Context.Session.GetString("nomeUsuario");
+
+            @Html.Raw("   <a href='/Usuario/Sair'>Sair</a>");
+          }
         </span>
       </div>
     </nav>
@@ -145,5 +159,7 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+
+    @RenderSection("scripts", required: false)
   </body>
 </html>
