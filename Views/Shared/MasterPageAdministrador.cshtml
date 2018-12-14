@@ -38,35 +38,21 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/"
-              >Home <span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="/Administrador/Dashboard">Dashboard <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Pages/Sobre">Sobre</a>
+            <a class="nav-link" href="/Administrador/Usuarios">Usuários</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Pages/Contato">Contato</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Depoimento">Depoimentos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Pages/Faq">Faq</a>
+            <a class="nav-link" href="/Administrador/Depoimentos">Depoimentos</a>
           </li>
         </ul>
         <span class="navbar-text">
-          @if(Context.Session.GetString("nomeUsuario") == null)
-          {
-            <a href="/Usuario/Login">Login</a> 
-            <a href="/Usuario/Cadastrar">Cadastrar</a>
-          } 
-          else
-          {
+          
             @Context.Session.GetString("nomeUsuario");
 
             @Html.Raw("   <a href='/Usuario/Sair'>Sair</a>");
-          }
+          
         </span>
       </div>
     </nav>
